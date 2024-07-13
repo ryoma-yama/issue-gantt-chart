@@ -3,25 +3,28 @@
   "version": "0.3.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.7.0",
-    "axios": "^0.21.1",
-    "dhtmlx-gantt": "^7.0.13",
-    "gh-pages": "^3.1.0",
-    "js-yaml": "^4.0.0",
-    "moment": "^2.29.1",
-    "multiselect-react-dropdown": "^1.6.7",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.16.1",
+    "@mui/lab": "5.0.0-alpha.172",
+    "@mui/material": "^5.16.1",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
+    "axios": "^1.7.2",
+    "dhtmlx-gantt": "^8.0.9",
+    "gh-pages": "^6.1.1",
+    "jest": "^29.7.0",
+    "js-yaml": "^4.1.0",
+    "moment": "^2.30.1",
+    "multiselect-react-dropdown": "^2.0.25",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
-    "react-hook-form": "^6.15.1",
-    "react-markdown": "^5.0.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2",
+    "react-hook-form": "^7.52.1",
+    "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.24.1",
+    "react-scripts": "5.0.1",
     "sfcookies": "^1.0.2"
   },
   "homepage": "https://lamact.github.io/react-issue-ganttchart/",
@@ -48,6 +51,7 @@
     ]
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.19.0"
-  }
+    "axios-mock-adapter": "^1.22.0"
+  },
+  "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }

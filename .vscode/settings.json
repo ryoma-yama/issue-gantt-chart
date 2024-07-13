@@ -1,4 +1,7 @@
 {
     "terminal.integrated.defaultProfile.linux": "zsh",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "Gantt"
+    ]
 }

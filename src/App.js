@@ -4,7 +4,7 @@ import Toolbar from './components/Toolbar';
 import Gantt from './components/Gantt';
 import PageHeader from './components/PageHeader';
 import { read_cookie } from 'sfcookies';
-import { withRouter } from 'react-router-dom';
+import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
 import { initialState, reducerFunc } from './State/Reducer.js';
 import {
   getIssuesFromAPI,
@@ -13,31 +13,33 @@ import {
 } from './functions/Common/IssueAPI.js';
 import { gantt } from 'dhtmlx-gantt';
 
-const App = (props) => {
+const App = () => {
   const [state, dispatch] = useReducer(reducerFunc, initialState);
   const { register, setValue } = useForm({ git_url: '', token: '' });
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setValue('token', read_cookie('git_token'));
     dispatch({ type: 'tokenChange', value: read_cookie('git_token') });
 
     // Set Zoom Level
-    const zoom = read_cookie("zoom")
-    if (zoom == "Days" || zoom == "Weeks" || zoom == "Years") {
+    const zoom = read_cookie("zoom");
+    if (zoom === "Days" || zoom === "Weeks" || zoom === "Years") {
       gantt.ext.zoom.setLevel(zoom);
     }
 
     // Set Menu Opened
     gantt.config.show_grid = read_cookie('menu_opened');
     gantt.render();
-  }, []);
+  }, [setValue]);
 
   useEffect(() => {
     dispatch({
       type: 'setStateFromURLQueryString',
-      value: { props: props, setValue: setValue },
+      value: { props: { location }, setValue: setValue },
     });
-  }, [props.location]);
+  }, [location, setValue]);
 
   useEffect(() => {
     setLabelListOfRepoFromAPI(state.git_url, state.token)
@@ -57,7 +59,6 @@ const App = (props) => {
   }, [state.git_url, state.token, state.selected_assignee]);
 
   useEffect(() => {
-    //dispatch({ type: 'getIssueByAPI' });
     getIssuesFromAPI(
       state.git_url,
       state.token,
@@ -87,7 +88,7 @@ const App = (props) => {
           onGitURLChange={(git_url) =>
             dispatch({
               type: 'gitURLChange',
-              value: { props: props, git_url: git_url },
+              value: { props: { location }, git_url: git_url },
             })
           }
           token={state.token}
@@ -99,7 +100,7 @@ const App = (props) => {
           onSelectedLabelChange={(selected_labels) =>
             dispatch({
               type: 'selectedLabelsChange',
-              value: { props: props, selected_labels: selected_labels },
+              value: { props: { location }, selected_labels: selected_labels },
             })
           }
           member_list={state.member_list}
@@ -107,7 +108,7 @@ const App = (props) => {
           onSelectedAssigneeChange={(selected_assignee) =>
             dispatch({
               type: 'selectedAssigneeChange',
-              value: { props: props, selected_assignee: selected_assignee },
+              value: { props: { location }, selected_assignee: selected_assignee },
             })
           }
           register={register}
@@ -139,4 +140,10 @@ const App = (props) => {
   );
 };
 
-export default withRouter(App);
+const MainApp = () => (
+  <Routes>
+    <Route path="/*" element={<App />} />
+  </Routes>
+);
+
+export default MainApp;

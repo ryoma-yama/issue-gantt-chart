@@ -1,27 +1,49 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import { Multiselect } from 'multiselect-react-dropdown';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import Autocomplete from '@mui/material/Autocomplete';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { gantt } from 'dhtmlx-gantt';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { bake_cookie } from 'sfcookies';
 
+const PREFIX = 'Toolbar';
+
+const classes = {
+  root: `${PREFIX}-root`
+};
+
+const Root = styled('form')((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
+    '& > *': {
+      fontSize: '13px',
+      marginRight: '4px',
+    },
+  }
+}));
+
 const Toolbar = (props) => {
-  const { classes } = props;
   return (
-    <form noValidate>
-      <IconButton color="primary" style={{ verticalAlign: 'middle' }}>
-        <MenuOpenIcon
-          onClick={(e) => {
-            gantt.config.show_grid = !gantt.config.show_grid;
-            bake_cookie('menu_opened', gantt.config.show_grid);
-            gantt.render();
-          }} />
+    <Root noValidate>
+      <IconButton
+        color="primary"
+        style={{ verticalAlign: 'middle' }}
+        size="large"
+        onClick={(e) => {
+          gantt.config.show_grid = !gantt.config.show_grid;
+          bake_cookie('menu_opened', gantt.config.show_grid);
+          gantt.render();
+        }}
+      >
+        <MenuOpenIcon />
       </IconButton>
       <TextField
         className={classes.root}
@@ -32,7 +54,7 @@ const Toolbar = (props) => {
         onChange={(e) => {
           props.onGitURLChange(e.target.value);
         }}
-        inputRef={props.register}
+        {...props.register("git_url")}
         name="git_url"
       />
       <TextField
@@ -44,7 +66,7 @@ const Toolbar = (props) => {
         onChange={(e) => {
           props.onTokenChange(e.target.value);
         }}
-        inputRef={props.register}
+        {...props.register("token")}
         name="token"
       />
       <Multiselect
@@ -68,7 +90,7 @@ const Toolbar = (props) => {
         className={classes.root}
         size="small"
         options={props.member_list}
-        getOptionLabel={(option) => option.name}
+        getOptionLabel={(option) => option && option.name ? option.name : ""}
         value={props.selected_assignee}
         noOptionsText="Requires a valid token"
         onChange={(e, assignee) => {
@@ -112,21 +134,17 @@ const Toolbar = (props) => {
           Days
         </Button>
       </ButtonGroup>
-      <IconButton color="primary" style={{ verticalAlign: 'middle' }}>
-        <GitHubIcon onClick={() => window.open('https://github.com/lamact/react-issue-ganttchart')} />
+      <IconButton
+        color="primary"
+        style={{ verticalAlign: 'middle' }}
+        size="large"
+        onClick={() => window.open('https://github.com/lamact/react-issue-ganttchart')}
+      >
+        <GitHubIcon />
       </IconButton>
-    </form>
+    </Root>
   );
 };
-
-const styles = (theme) => ({
-  root: {
-    '& > *': {
-      fontSize: '13px',
-      marginRight: '4px',
-    },
-  },
-});
 
 const selector_style = {
   multiselectContainer: {
@@ -145,4 +163,4 @@ const selector_style = {
   },
 };
 
-export default withStyles(styles)(Toolbar);
+export default Toolbar;
