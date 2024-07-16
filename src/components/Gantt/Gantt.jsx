@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gantt } from 'dhtmlx-gantt';
 import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
-import { attachEvent } from './GanttAttachEvent.js';
+import { attachEvent } from './GanttAttachEvent.jsx';
 import { setGanttTemplates } from './GanttTemplates.js';
 import { setGanttConfig } from './GanttConfig.js';
 import { isValidVariable } from '../../functions/Common/CommonHelper.js';

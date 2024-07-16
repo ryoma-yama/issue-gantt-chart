@@ -24,15 +24,14 @@
     "react-hook-form": "^7.52.1",
     "react-markdown": "^9.0.1",
     "react-router-dom": "^6.24.1",
-    "react-scripts": "5.0.1",
     "sfcookies": "^1.0.2"
   },
   "homepage": "https://lamact.github.io/react-issue-ganttchart/",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vite test",
+    "eject": "vite eject",
     "deploy": "yarn build && gh-pages -d build"
   },
   "eslintConfig": {
@@ -51,7 +50,9 @@
     ]
   },
   "devDependencies": {
-    "axios-mock-adapter": "^1.22.0"
+    "@vitejs/plugin-react": "^4.3.1",
+    "axios-mock-adapter": "^1.22.0",
+    "vite": "^5.3.3"
   },
   "packageManager": "pnpm@9.5.0+sha512.140036830124618d624a2187b50d04289d5a087f326c9edfc0ccd733d76c4f52c3a313d4fc148794a2a9d81553016004e6742e8cf850670268a7387fc220c903"
 }
