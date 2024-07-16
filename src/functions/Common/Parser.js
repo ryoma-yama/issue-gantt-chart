@@ -1,9 +1,9 @@
-import { isValidVariable, isValidIDName, isNumber } from './CommonHelper.js';
+import { isValidVariable, isValidIDName } from './CommonHelper.js';
 import yaml from 'js-yaml';
 import { gantt } from 'dhtmlx-gantt';
 
 export const removeFirstSharp = (id_str) => {
-  if(!isValidVariable(id_str)){
+  if (!isValidVariable(id_str)) {
     return null;
   }
   if (id_str.length > 1 && /^#/.test(id_str)) {
@@ -13,7 +13,7 @@ export const removeFirstSharp = (id_str) => {
 };
 
 export const removeLastSlash = (url) => {
-  if(!isValidVariable(url)){
+  if (!isValidVariable(url)) {
     return null;
   }
   if (url.length > 1 && /\/$/.test(url)) {
@@ -23,7 +23,7 @@ export const removeLastSlash = (url) => {
 };
 
 export const removeLastSpace = (url) => {
-  if(!isValidVariable(url)){
+  if (!isValidVariable(url)) {
     return null;
   }
   if (url.length > 1 && / +$/.test(url)) {
@@ -132,7 +132,7 @@ export const replacePropertyInDescriptionString = (description, task) => {
     return null;
   }
   const end_section = str[1];
-  if (first_section == null || end_section == null) {
+  if (first_section === null || end_section === null) {
     return null;
   }
   return first_section + task_section + end_section;
@@ -183,5 +183,5 @@ export const getDependonFromDescriptionYaml = (description, column_name) => {
     return null;
   }
   const number = yaml_struct[column_name];
-     return number;
+  return number;
 };

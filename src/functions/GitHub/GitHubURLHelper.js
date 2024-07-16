@@ -78,7 +78,7 @@ export const getGitHubAPIURLIssueFilterd = (git_url, labels, assignee) => {
   }
   let url_query_str = '?';
   url_query_str += 'labels=';
-  labels.map((label) => {
+  labels.foreach((label) => {
     if (isValidIDName(label)) {
       url_query_str += label.name + ',';
     }

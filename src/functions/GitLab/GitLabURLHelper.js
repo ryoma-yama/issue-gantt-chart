@@ -65,7 +65,7 @@ export const getGitLabNameSpaceFromGitURL = (git_url) => {
   }
   git_url = removeLastSlash(removeLastSpace(git_url));
   const split_git_url = git_url.split('/');
-  if (split_git_url.length == 5) {
+  if (split_git_url.length === 5) {
     return split_git_url[3];
   }
   if (split_git_url.length >= 5) {
@@ -80,7 +80,7 @@ export const getGitLabNameSpaceFromGitURLsplitSlash = (git_url) => {
   }
   git_url = removeLastSlash(removeLastSpace(git_url));
   const split_git_url = git_url.split('/');
-  if (split_git_url.length == 5) {
+  if (split_git_url.length === 5) {
     return split_git_url[3];
   }
   if (split_git_url.length >= 5) {
@@ -95,7 +95,7 @@ export const getGitLabProjectFromGitURL = (git_url) => {
   }
   git_url = removeLastSlash(removeLastSpace(git_url));
   const split_git_url = git_url.split('/');
-  if (split_git_url.length == 5) {
+  if (split_git_url.length === 5) {
     return split_git_url[4];
   }
   if (split_git_url.length >= 5) {
