@@ -1,9 +1,5 @@
 import ReactMarkdown from 'react-markdown';
 import ReactDOMServer from 'react-dom/server';
-import {
-  calculateStartDate,
-  calculateDueDate,
-} from '../../functions/Common/CommonHelper';
 
 export const attachEvent = (gantt, props) => {
   gantt.attachEvent('onTaskDblClick', (gantt_task_id, e) => {
@@ -39,7 +35,7 @@ export const attachEvent = (gantt, props) => {
       let linkIds = link.source;
       afterlink.push({ type: '0', target: linkid, source: linkIds });
       let relinkIds = linkIds.slice(1);
-      if (relinkIds != '') {
+      if (relinkIds !== '') {
         afterlinkId.push(relinkIds);
       }
     });
@@ -63,7 +59,7 @@ export const attachEvent = (gantt, props) => {
       let linkIds = link.source;
       afterlink.push({ type: '0', target: linkid, source: linkIds });
       let relinkIds = linkIds.slice(1);
-      if (relinkIds != '') {
+      if (relinkIds !== '') {
         afterlinkId.push(relinkIds);
       }
     });
@@ -113,7 +109,7 @@ export const attachEvent = (gantt, props) => {
 
     var showDate,
       repaint = false;
-    if (mode == 'resize' || mode == 'move') {
+    if (mode === 'resize' || mode === 'move') {
       if (Math.abs(task.start_date - minDate) < scaleStep) {
         showDate = task.start_date;
         repaint = true;

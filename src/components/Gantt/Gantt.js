@@ -14,7 +14,7 @@ const Gantt = (props) => {
     attachEvent(gantt, props);
     gantt.init(containerRef.current);
     gantt.ext.zoom.setLevel(props.zoom);
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     gantt.ext.zoom.setLevel(props.zoom);
@@ -23,17 +23,16 @@ const Gantt = (props) => {
   useEffect(() => {
     try {
       gantt.clearAll();
-      if (isValidVariable(props.issue) && props.issue.length != 0) {
-        props.issue.map((issue) => {
+      if (isValidVariable(props.issue) && props.issue.length !== 0) {
+        props.issue.forEach((issue) => {
           gantt.addTask(issue);
           if ('links' in issue) {
-            issue.links.map((link) => {
+            issue.links.forEach((link) => {
               gantt.addLink(link);
-              return null;
             });
           }
         });
-        props.issue.map((issue) => {
+        props.issue.forEach((issue) => {
           if (issue._parent !== "#0") {
             gantt.setParent(gantt.getTask(issue.id), issue._parent);
           }
@@ -43,9 +42,7 @@ const Gantt = (props) => {
     } catch (err) {
       gantt.message({ text: err, type: 'error' });
     }
-  }, [
-    props.issue
-  ]);
+  }, [props.issue]);
 
   return (
     <div ref={containerRef} style={{ width: '100%', height: '100%' }}></div>

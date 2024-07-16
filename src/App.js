@@ -4,7 +4,7 @@ import Toolbar from './components/Toolbar';
 import Gantt from './components/Gantt';
 import PageHeader from './components/PageHeader';
 import { read_cookie } from 'sfcookies';
-import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
+import { useLocation, Routes, Route } from 'react-router-dom';
 import { initialState, reducerFunc } from './State/Reducer.js';
 import {
   getIssuesFromAPI,
@@ -16,7 +16,6 @@ import { gantt } from 'dhtmlx-gantt';
 const App = () => {
   const [state, dispatch] = useReducer(reducerFunc, initialState);
   const { register, setValue } = useForm({ git_url: '', token: '' });
-  const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {

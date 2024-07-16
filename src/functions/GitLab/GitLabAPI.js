@@ -33,7 +33,7 @@ export const getGitLabIssuesFromAPI = async (
     .get(getGitLabAPIURLIssueFilterd(git_url, token, selected_labels, assignee))
     .then((res) => {
       let data = [];
-      res.data.map((issue_info) => {
+      res.data.foreach((issue_info) => {
         data.push(generateGanttTaskFromGitLab(issue_info));
       });
       return data;
@@ -106,7 +106,7 @@ export const updateGitLabIssueFromGanttTask = (
             issue_info.description,
             gantt_task
           );
-          if (description == null) {
+          if (description === null) {
             gantt.message({
               text: 'failed update issue. ' + gantt_task.text,
               type: 'error',
@@ -160,7 +160,7 @@ export const openGitLabIssueAtBrowser = (id, git_url) => {
 
 export const openGitLabNewIssueAtBrowser = (gantt_task, git_url) => {
   const start_date_str = date2string(new Date());
-  if (gantt_task.parent == null) {
+  if (gantt_task.parent === null) {
     gantt_task.parent = 0;
   }
   const task = {

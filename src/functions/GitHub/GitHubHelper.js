@@ -43,7 +43,7 @@ export const generateGanttTaskFromGitHub = (description, issue_info) => {
 
   let links = [];
   const link = generateLinkFromGitHub(description, issue_info);
-  if (typeof link != "undefined") {
+  if (typeof link !== "undefined") {
     for (let i = 0; i < link.length; i++) {
       let prelink = {
         type: link[i].type,
@@ -80,11 +80,11 @@ export const updateGitHubDescriptionStringFromGanttTask = (
   gantt_task
 ) => {
   const start_date_str = adjustDateString(gantt_task.start_date)
-    .replace(/\-/g, '/');
+    .replace(/-/g, '/');
   const due_date_str = calculateDueDate(
     start_date_str,
     gantt_task.duration
-  ).replace(/\-/g, '/');
+  ).replace(/-/g, '/');
   const task = {
     start_date: start_date_str,
     due_date: due_date_str,

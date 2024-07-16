@@ -50,7 +50,7 @@ export const getGitHubIssuesFromAPI = async (
     })
     .then((res) => {
       const promise_list = [];
-      res.data.map((issue_info) => {
+      res.data.foreach((issue_info) => {
         promise_list.push(getGitHubIssueFromAPI(git_url, token, issue_info));
       });
       return Promise.all(promise_list);
@@ -118,7 +118,7 @@ export const updateGitHubIssueFromGanttTask = (
         updateGitHubDescriptionStringFromGanttTask(
           issue_info.body,
           gantt_task
-        ) == null
+        ) === null
       ) {
         gantt.message({
           text: 'failed update issue. ' + gantt_task.text,
@@ -179,7 +179,7 @@ export const openGitHubIssueAtBrowser = (gantt_task_id, git_url) => {
 export const openGitHubNewIssueAtBrowser = (gantt_task, git_url) => {
   const start_date_str = date2string(new Date());
   const due_date_str = date2string(new Date());
-  if (gantt_task.parent == null) {
+  if (gantt_task.parent === null) {
     gantt_task.parent = 0;
   }
   const task = {

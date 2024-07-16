@@ -3,7 +3,6 @@ import moment from 'moment';
 export const isValidVariable = (variable) => {
   if (
     variable !== null &&
-    variable !== [] &&
     variable !== void 0 &&
     variable !== ''
   ) {
@@ -110,7 +109,7 @@ export const getGanttDueDate = (start_date, due_date, created_at) => {
 
 export const getGanttUpdateDate = (created_at, updated_at) => {
   let updated_date_str = null;
-  if (updated_at != null) {
+  if (updated_at !== null) {
     updated_date_str = adjustDateString(updated_at);
   } else {
     updated_date_str = adjustDateString(created_at);
@@ -126,7 +125,7 @@ export const getGanttDuration = (start_date, due_date, created_at) => {
   if (!isValidVariable(start_date)) {
     start_date = created_at;
   }
-  if (start_date != null && due_date != null) {
+  if (start_date !== null && due_date !== null) {
     duration = calculateDuration(start_date, due_date);
   } else {
     duration = 1;
@@ -136,11 +135,11 @@ export const getGanttDuration = (start_date, due_date, created_at) => {
 
 export const ArrangeGanttTaskToGeneratedGanttTaskForCompare = (issue_info) => {
   let arrangelink = [];
-  issue_info.links.map((list) => {
+  issue_info.links.foreach((list) => {
     arrangelink.push({ type: list.type, target: list.target, source: list.source });
   });
   var _parent
-  if (issue_info.parent == 0)
+  if (issue_info.parent === 0)
     _parent = "#0";
   else {
     _parent = issue_info.parent;
@@ -164,16 +163,16 @@ export const ArrangeGanttTaskToGeneratedGanttTaskForCompare = (issue_info) => {
 
 export const isEqualGanntTask = (GanntTaskA, GanntTaskB) => {
   return (
-    GanntTaskA.id == GanntTaskB.id &&
-    GanntTaskA.text == GanntTaskB.text &&
-    GanntTaskA.start_date == GanntTaskB.start_date &&
-    GanntTaskA.due_date == GanntTaskB.due_date.toString() &&
-    GanntTaskA.duration == GanntTaskB.duration &&
-    GanntTaskA.progress == GanntTaskB.progress &&
-    GanntTaskA.assignee == GanntTaskB.assignee &&
-    // GanntTaskA.description == GanntTaskB.description &&
-    GanntTaskA.update == GanntTaskB.update &&
-    GanntTaskA._parent == GanntTaskB._parent &&
-    JSON.stringify(GanntTaskA.links) == JSON.stringify(GanntTaskB.links)
+    GanntTaskA.id === GanntTaskB.id &&
+    GanntTaskA.text === GanntTaskB.text &&
+    GanntTaskA.start_date === GanntTaskB.start_date &&
+    GanntTaskA.due_date === GanntTaskB.due_date.toString() &&
+    GanntTaskA.duration === GanntTaskB.duration &&
+    GanntTaskA.progress === GanntTaskB.progress &&
+    GanntTaskA.assignee === GanntTaskB.assignee &&
+    // GanntTaskA.description === GanntTaskB.description &&
+    GanntTaskA.update === GanntTaskB.update &&
+    GanntTaskA._parent === GanntTaskB._parent &&
+    JSON.stringify(GanntTaskA.links) === JSON.stringify(GanntTaskB.links)
   );
 };

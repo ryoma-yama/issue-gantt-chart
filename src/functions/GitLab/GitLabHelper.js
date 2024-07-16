@@ -50,7 +50,7 @@ export const generateGanttTaskFromGitLab = (issue_info) => {
 
   let links = [];
   const link = generateLinkFromGitLab(issue_info);
-  if (typeof link != "undefined") {
+  if (typeof link !== "undefined") {
     for (let i = 0; i < link.length; i++) {
       let prelink = {
         type: link[i].type,
@@ -68,7 +68,7 @@ export const generateLinkFromGitLab = (issue_info) => {
   const link = [];
   let dependon = [];
   dependon = getDependonFromDescriptionYaml(issue_info.description, 'dependon');
-  if (dependon != null) {
+  if (dependon !== null) {
     //let data = [];
     for (let i = 0; i < dependon.length; i++) {
       let data = [];
@@ -86,14 +86,14 @@ export const updateGitLabDescriptionStringFromGanttTask = (
   gantt_task
 ) => {
   const start_date_str = adjustDateString(gantt_task.start_date).replace(
-    /\-/g,
+    /-/g,
     '/'
   );
   const task = {
     start_date: start_date_str,
     progress: orgRound(gantt_task.progress, 0.01),
   };
-  if ('parent' in gantt_task && gantt_task.parent != null) {
+  if ('parent' in gantt_task && gantt_task.parent !== null) {
     task.parent = parseInt(removeFirstSharp(gantt_task.parent));
   }
   if ('dependon' in gantt_task) {
